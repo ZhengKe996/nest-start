@@ -10,6 +10,7 @@ import {
   HttpException,
   HttpStatus,
   UseFilters,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CatService } from './cat.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -62,9 +63,9 @@ export class CatController {
   }
 
   @Get(':id')
-  get(@Param() params: { id: number }) {
+  get(@Param('id', new ParseIntPipe()) id: number) {
     return {
-      id: Number(params.id),
+      id: id,
       msg: '获取成功',
     };
   }
