@@ -7,14 +7,21 @@ import {
   Put,
   Post,
   Body,
+  HttpException,
+  HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { CatService } from './cat.service';
 import { CreateCatDto } from './dto/create-cat.dto';
+// import { HttpExceptionFilter } from '../http-exception.filter';
+// @UseFilters(HttpExceptionFilter)
 @Controller('cat')
 export class CatController {
   constructor(private readonly catService: CatService) {}
   @Get()
   go() {
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+
     return this.catService.findAll();
   }
 
