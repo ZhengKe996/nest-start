@@ -33,7 +33,7 @@ export class CatController {
     return qeury;
   }
 
-  @Get('find/:id')
+  @Get('find')
   findOne(@Param() params): string {
     return params;
   }
