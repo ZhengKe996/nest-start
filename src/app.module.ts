@@ -5,8 +5,22 @@ import { CatController } from './cat/cat.controller';
 import { CatService } from './cat/cat.service';
 import { LoggerMiddleware } from './logger.middleware';
 import { UserController } from './user/user.controller';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { UsersModule } from './users/users.module';
+import { User } from './users/users.model';
 @Module({
-  imports: [],
+  imports: [
+    SequelizeModule.forRoot({
+      dialect: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '123456',
+      database: 'test',
+      models: [User],
+    }),
+    UsersModule,
+  ],
   controllers: [AppController, CatController, UserController],
   providers: [AppService, CatService],
 })
