@@ -1,16 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-
+import { CatService } from './cat.service';
 @Controller('cat')
 export class CatController {
+  constructor(private readonly catService: CatService) {}
+
   @Get('say')
   say(): { name: string } {
-    return {
-      name: 'hello',
-    };
+    return this.catService.say();
   }
 
   @Get('sayhello')
   sayHello(): number[] {
-    return [1, 2, 3, 4, 5];
+    return this.catService.sayHello();
   }
 }
