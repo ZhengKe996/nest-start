@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { CatController } from './cat/cat.controller';
 import { CatService } from './cat/cat.service';
 import { LoggerMiddleware } from './logger.middleware';
+import { UserController } from './user/user.controller';
 @Module({
   imports: [],
-  controllers: [AppController, CatController],
+  controllers: [AppController, CatController, UserController],
   providers: [AppService, CatService],
 })
 export class AppModule {
