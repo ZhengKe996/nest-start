@@ -10,12 +10,15 @@ import {
   HttpException,
   HttpStatus,
   UseFilters,
+  UseInterceptors,
   ParseIntPipe,
 } from '@nestjs/common';
 import { CatService } from './cat.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 // import { HttpExceptionFilter } from '../http-exception.filter';
 // @UseFilters(HttpExceptionFilter)
+import { MyLoggingInterceptor } from '../my-logging.interceptor';
+@UseInterceptors(MyLoggingInterceptor)
 @Controller('cat')
 export class CatController {
   constructor(private readonly catService: CatService) {}
